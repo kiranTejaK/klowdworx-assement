@@ -29,9 +29,7 @@ const Products=()=>{
   const pagesVisited = pageNumber * productsPerPage;
   const pageCount = Math.ceil(productsList.length / productsPerPage);
 
-  const displayProducts = productsList
-  .slice(pagesVisited, pagesVisited + productsPerPage)
-  .filter(product => product.category.toLowerCase().includes(searchInput.toLowerCase()))
+  const displayProducts = productsList.filter(product => product.category.toLowerCase().includes(searchInput.toLowerCase())).slice(pagesVisited, pagesVisited + productsPerPage)
   .map((product) => {
     return (
       <ProductItem
@@ -55,7 +53,7 @@ const Products=()=>{
     <input type="text" placeholder="Search..." value={searchInput} onChange={handleSearchInputChange} />
       {displayProducts}
 </div>
-    <div className="products-container">
+    <div className="pagination-container">
       <ReactPaginate
         previousLabel={"Previous"}
         nextLabel={"Next"}
